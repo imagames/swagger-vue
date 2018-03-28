@@ -1,6 +1,6 @@
 {
   "name": "swagger-vue",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "Swagger to JS & Vue & Axios Codegen",
   "main": "index.js",
   "scripts": {
@@ -10,7 +10,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/chenweiqun/swagger-vue.git"
+    "url": "git+https://github.com/imagames/swagger-vue.git"
   },
   "keywords": [
     "swagger",
@@ -21,9 +21,9 @@
   "author": "chenweiqun",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/chenweiqun/swagger-vue/issues"
+    "url": "https://github.com/imagames/swagger-vue/issues"
   },
-  "homepage": "https://github.com/chenweiqun/swagger-vue#readme",
+  "homepage": "https://github.com/imagames/swagger-vue#readme",
   "dependencies": {
     "handlebars": "^4.0.6",
     "js-beautify": "^1.6.12",

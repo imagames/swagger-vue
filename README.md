@@ -15,7 +15,8 @@ const path = require('path')
 let opt = {
   swagger: jsonData,
   moduleName: 'api',
-  className: 'api'
+  className: 'api',
+  forcePathAsMethodName: true // this option prevents method name collisions
 }
 const codeResult = swaggerGen(opt)
 fs.writeFileSync(path.join(__dirname, '../dist/api.js'), codeResult)
