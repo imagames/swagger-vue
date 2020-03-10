@@ -1,6 +1,6 @@
 {
   "name": "swagger-vue",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "description": "Swagger to JS & Vue & Axios Codegen",
   "main": "index.js",
   "scripts": {
