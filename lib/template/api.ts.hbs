@@ -1,0 +1,60 @@
+/* eslint-disable */
+import axios, { AxiosInstance, AxiosRequestConfig, AxiosPromise } from 'axios'
+import qs from 'qs'
+
+let domain = ''
+let _axios: AxiosInstance = axios
+
+interface Dict {
+  [key: string]: any
+}
+
+interface CallParams extends Dict{
+  $domain?: string;
+  $config?: AxiosRequestConfig;
+  $queryParameters?: Dict;
+}
+
+enum RequestMethod {
+  GET = 'get',
+  POST = 'post',
+  PUT = 'put',
+  PATCH = 'patch',
+  DELETE = 'delete',
+  HEAD = 'head'
+}
+
+export function getDomain(): string {
+  return domain
+}
+
+export function setDomain($domain: string) {
+  domain = $domain
+}
+
+export function setAxios($axios: AxiosInstance) {
+  _axios = $axios
+}
+
+export function request(method: RequestMethod, url: string, body: string, queryParameters: object, form: object, config: AxiosRequestConfig): AxiosPromise {
+  let keys = Object.keys(queryParameters)
+  let queryUrl = url
+  if (keys.length > 0) {
+    queryUrl = url + '?' + qs.stringify(queryParameters)
+  }
+  switch (method) {
+    case RequestMethod.GET:
+      return _axios.get(queryUrl, {params: form, ...config})
+    case RequestMethod.DELETE:
+    case RequestMethod.HEAD:
+      return _axios[method](queryUrl, config)
+    default:
+      if (body) {
+        return _axios[method](queryUrl, body, config)
+      } else {
+        return _axios[method](queryUrl, qs.stringify(form), config)
+      }
+  }
+}
+
+{{> methods }}
