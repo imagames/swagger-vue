@@ -36,11 +36,14 @@ export function setAxios($axios: AxiosInstance) {
   _axios = $axios
 }
 
+const defaultSerializer = (params: any) => qs.stringify(params)
+
 export function request(method: RequestMethod, url: string, body: string, queryParameters: object, form: object, config: AxiosRequestConfig): AxiosPromise {
-  let keys = Object.keys(queryParameters)
+  const serializer = config?.paramsSerializer ?? defaultSerializer
+  const keys = Object.keys(queryParameters)
   let queryUrl = url
   if (keys.length > 0) {
-    queryUrl = url + '?' + qs.stringify(queryParameters)
+    queryUrl = url + '?' + serializer(queryParameters)
   }
   switch (method) {
     case RequestMethod.GET:
@@ -52,7 +55,7 @@ export function request(method: RequestMethod, url: string, body: string, queryP
       if (body) {
         return _axios[method](queryUrl, body, config)
       } else {
-        return _axios[method](queryUrl, qs.stringify(form), config)
+        return _axios[method](queryUrl, serializer(form), config)
       }
   }
 }
