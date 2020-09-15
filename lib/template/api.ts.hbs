@@ -8,6 +8,7 @@ let _axios: AxiosInstance = axios
 interface Dict {
   [key: string]: any
 }
+type Optional<T> = T | undefined
 
 interface CallParams extends Dict{
   $domain?: string;
@@ -38,7 +39,7 @@ export function setAxios($axios: AxiosInstance) {
 
 const defaultSerializer = (params: any) => qs.stringify(params)
 
-export function request(method: RequestMethod, url: string, body: string, queryParameters: object, form: object, config: AxiosRequestConfig): AxiosPromise {
+export function request(method: RequestMethod, url: string, body: Optional<string>, queryParameters: object, form: object, config: Optional<AxiosRequestConfig>): AxiosPromise {
   const serializer = config?.paramsSerializer ?? defaultSerializer
   const keys = Object.keys(queryParameters)
   let queryUrl = url

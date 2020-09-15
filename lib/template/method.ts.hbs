@@ -46,7 +46,7 @@ export function {{&methodName}}(parameters: CallParams = {}): AxiosPromise {
 {{/parameters}}
     if(parameters.$queryParameters) {
         Object.keys(parameters.$queryParameters).forEach(function(parameterName){
-            queryParameters[parameterName] = parameters.$queryParameters[parameterName]
+            queryParameters[parameterName] = parameters.$queryParameters?.[parameterName]
         });
     }
     return request(RequestMethod.{{toUpperCase method}}, domain + path, body, queryParameters, form, config)
@@ -75,7 +75,7 @@ export function {{&methodName}}URL(parameters: CallParams = {}): string{
 
     if(parameters.$queryParameters) {
         Object.keys(parameters.$queryParameters).forEach(function(parameterName) {
-            queryParameters[parameterName] = parameters.$queryParameters[parameterName]
+            queryParameters[parameterName] = parameters.$queryParameters?.[parameterName]
         })
     }
 
